@@ -1,0 +1,63 @@
+// Here you can add other styles
+.login-bg{
+  background: 'url(/storage/backgrounds/img-bg2.jpg)';
+}
+
+.book-link{
+  color: white;
+}
+
+.loading-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .3);
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 1;
+}
+
+#loading-box{
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 6rem;
+  height: 4rem;
+  text-align: center;
+}
+
+#loading-box-sm{
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+
+#spinner{
+  position: relative;
+  height: 2rem; 
+  width: 2rem;
+  color: black;
+}
+
+.toast.show{
+  position: fixed;
+  z-index: 10;
+}
+
+#side-scroll{
+  overflow-x: auto;
+}
+
+#lend-search-result{
+  height: 50vh;
+  overflow: scroll;
+}
+
+
