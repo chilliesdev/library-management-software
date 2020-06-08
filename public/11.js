@@ -40,12 +40,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function CreateCustomer(props) {
-  var create = props.create,
-      toggleCreate = props.toggleCreate,
-      getCustomers = props.getCustomers,
-      editInfo = props.editInfo,
-      handleLend = props.handleLend;
+function CreateCustomer(_ref) {
+  var create = _ref.create,
+      toggleCreate = _ref.toggleCreate,
+      editInfo = _ref.editInfo,
+      _ref$getData = _ref.getData,
+      getData = _ref$getData === void 0 ? null : _ref$getData,
+      _ref$handleLend = _ref.handleLend,
+      handleLend = _ref$handleLend === void 0 ? null : _ref$handleLend;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: '',
@@ -142,16 +144,15 @@ function CreateCustomer(props) {
       name: name,
       phone: phone
     }).then(function (response) {
-      console.log(response);
       setLoading(false);
       setInfo({
         name: '',
         phone: ''
       });
       toggleCreate();
-      handleLend ? handleLend(response.data.id) : getCustomers();
+      handleLend ? handleLend(response.data.id) : getData('/api/customers', 'RELOAD');
     })["catch"](function (error) {
-      console.error(error.response);
+      console.error(error);
     });
   };
 
@@ -213,26 +214,24 @@ function CreateCustomer(props) {
 
 /***/ }),
 
-/***/ "./resources/js/react/src/views/Customer/Customer.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/react/src/views/Customer/Customer.js ***!
-  \***********************************************************/
+/***/ "./resources/js/react/src/views/Customer/Customers.js":
+/*!************************************************************!*\
+  !*** ./resources/js/react/src/views/Customer/Customers.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customers; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Loading */ "./resources/js/react/src/views/components/Loading.js");
-/* harmony import */ var _components_Toasts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Toasts */ "./resources/js/react/src/views/components/Toasts.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var _CreateCustomer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CreateCustomer */ "./resources/js/react/src/views/Customer/CreateCustomer.js");
-/* harmony import */ var _CustomerBooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CustomerBooks */ "./resources/js/react/src/views/Customer/CustomerBooks.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -264,382 +263,177 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+function CustomerRow(props) {
+  var customer = props.customer;
+  var id = customer.id,
+      name = customer.name,
+      phone = customer.phone;
+  var customerLink = "/customers/".concat(id);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    scope: "row",
+    className: "text-capitalize w-75"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: customerLink
+  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    className: "text-capitalize"
+  }, phone));
+}
 
+var Customers = /*#__PURE__*/function (_Component) {
+  _inherits(Customers, _Component);
 
-var Customer = /*#__PURE__*/function (_Component) {
-  _inherits(Customer, _Component);
+  var _super = _createSuper(Customers);
 
-  var _super = _createSuper(Customer);
-
-  function Customer(props) {
+  function Customers() {
     var _this;
 
-    _classCallCheck(this, Customer);
+    _classCallCheck(this, Customers);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this);
 
-    _defineProperty(_assertThisInitialized(_this), "toggleDelete", function () {
-      _this.setState({
-        deleteVal: !_this.state.deleteVal
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "toggleEdit", function () {
-      _this.setState({
-        edit: !_this.state.edit
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleDelete", function () {
-      _this.setState({
+    _defineProperty(_assertThisInitialized(_this), "getData", function (dataUrl) {
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      type === 'RELOAD' && _this.setState({
         loading: true
       });
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/deletecustomer/".concat(_this.state.slug)).then(function (response) {
-        console.log(response);
-
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(dataUrl).then(function (response) {
         _this.setState({
-          // loading: false,
-          redirect: true
+          url: response.data.next_page_url,
+          disabled: response.data.current_page === response.data.last_page && true,
+          loading: false,
+          spinner: false
         });
 
-        _this.toggleDelete();
+        if (type === 'RELOAD') {
+          _this.setState({
+            customers: response.data.data
+          });
+        } else {
+          _this.setState({
+            customers: _this.state.customers.length > 0 ? _this.state.customers.concat(response.data.data) : response.data.data
+          });
+        }
+
+        _this.makePagination(response.data);
       })["catch"](function (error) {
-        console.error(error);
+        _this.getCustomers();
+
+        console.log(error.response);
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "getCustomer", function () {
+    _defineProperty(_assertThisInitialized(_this), "getCustomers", function () {
+      _this.getData(_this.state.url);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "toggleCreate", function () {
       _this.setState({
-        loading: true
-      });
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/customer/".concat(_this.state.slug)).then(function (response) {
-        _this.setState({
-          customer: response.data,
-          loading: false
-        });
-      })["catch"](function (error) {
-        _this.getCustomer();
-
-        console.error(error.response);
+        create: !_this.state.create
       });
     });
 
     _this.state = {
-      slug: _this.props.match.params.id,
-      customer: [],
+      customers: [],
       loading: true,
-      deleteVal: false,
-      redirect: false,
-      edit: false,
-      toast: false
+      url: '/api/customers',
+      spinner: false,
+      disabled: false,
+      create: false
     };
     return _this;
   }
 
-  _createClass(Customer, [{
-    key: "toggleToast",
-    value: function toggleToast() {
-      var _this2 = this;
-
+  _createClass(Customers, [{
+    key: "loadMore",
+    value: function loadMore() {
       this.setState({
-        toast: !this.state.toast
+        url: this.state.pagination.next_page_url,
+        spinner: true
       });
-      setTimeout(function () {
-        return _this2.setState({
-          toast: false
-        });
-      }, 5000);
+      this.state.pagination.current_page != this.state.pagination.last_page && this.getCustomers();
+    }
+  }, {
+    key: "makePagination",
+    value: function makePagination(data) {
+      this.setState({
+        pagination: {
+          current_page: data.current_page,
+          last_page: data.last_page,
+          next_page_url: data.next_page_url,
+          prev_page_url: data.prev_page_url
+        }
+      });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getCustomer();
+      this.getCustomers();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$state = this.state,
+          customers = _this$state.customers,
           loading = _this$state.loading,
-          customer = _this$state.customer,
-          deleteVal = _this$state.deleteVal,
-          redirect = _this$state.redirect,
-          edit = _this$state.edit,
-          toast = _this$state.toast;
+          create = _this$state.create,
+          spinner = _this$state.spinner,
+          disabled = _this$state.disabled;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "animated fadeIn"
-      }, redirect && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
-        to: "/customers"
-      }), loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, toast && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Toasts__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        message: "Book has been returned successfully",
-        title: "Success"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Col"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
         xl: 12
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        className: "btn btn-dark float-right",
-        to: "/customers"
-      }, "Go Back")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Col"], {
-        xl: 12
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "display-4 text-capitalize"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-user pr-1"
-      }), customer.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Col"], {
-        xl: 12
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lead"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-phone pr-1"
-      }), customer.phone)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Col"], {
-        lg: 6,
-        className: "mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-        className: "btn-sm mx-1",
-        color: "danger",
-        onClick: this.toggleDelete
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-trash"
-      }), "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-        className: "btn-sm mx-1",
-        color: "success",
-        onClick: this.toggleEdit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-pencil"
-      }), "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-        className: "btn-sm mx-1",
-        color: "secondary"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-envelope"
-      }), "Message")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Col"], {
-        lg: 6
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomerBooks__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        customer: customer.id,
-        toggleToast: this.toggleToast,
-        toggleLoading: function toggleLoading(value) {
-          return _this3.setState({
-            loading: value
-          });
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["CardHeader"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-user"
+      }), "Customers ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+        className: "text-muted"
+      }, "All Customers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        className: "btn-sm float-right",
+        color: "primary",
+        onClick: function onClick() {
+          return _this2.toggleCreate();
         }
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Modal"], {
-        isOpen: deleteVal,
-        toggle: this.toggleDelete,
-        className: "modal-danger modal-sm"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["ModalHeader"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lead"
-      }, "Do you want to delete this customer?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-        className: "btn-sm",
-        color: "danger",
-        onClick: this.handleDelete
-      }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-        className: "btn-sm",
-        color: "success",
-        onClick: this.toggleDelete
-      }, "No"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateCustomer__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        editInfo: customer,
-        create: edit,
-        getCustomers: this.getCustomer,
-        toggleCreate: this.toggleEdit
-      }))));
+      }, "Add Customer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreateCustomer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        create: create,
+        toggleCreate: this.toggleCreate,
+        getData: this.getData
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["CardBody"], null, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex justify-content-center mb-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        type: "sm"
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Table"], {
+        responsive: true,
+        borderless: true,
+        hover: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, customers.map(function (customer) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomerRow, {
+          key: customer.id,
+          customer: customer
+        });
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        color: "dark",
+        disabled: disabled,
+        onClick: this.loadMore.bind(this)
+      }, spinner ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Spinner"], {
+        className: "mx-3",
+        style: {
+          height: '1rem',
+          width: '1rem'
+        },
+        color: "light"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "cui-chevron-bottom mx-3"
+      }))))))));
     }
   }]);
 
-  return Customer;
+  return Customers;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
-
-/***/ }),
-
-/***/ "./resources/js/react/src/views/Customer/CustomerBooks.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/react/src/views/Customer/CustomerBooks.js ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Lendlist; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Context */ "./resources/js/react/src/Context.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Loading */ "./resources/js/react/src/views/components/Loading.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-function Lendlist(_ref) {
-  var customer = _ref.customer,
-      toggleToast = _ref.toggleToast,
-      toggleLoading = _ref.toggleLoading;
-  var context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_Context__WEBPACK_IMPORTED_MODULE_1__["AppContext"]);
-  var library = context.library,
-      user = context.user;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
-      _useState2 = _slicedToArray(_useState, 2),
-      loading = _useState2[0],
-      setLoading = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      books = _useState4[0],
-      setBooks = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('/api/customerbooks'),
-      _useState6 = _slicedToArray(_useState5, 2),
-      url = _useState6[0],
-      setUrl = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      pagination = _useState8[0],
-      setPagination = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      buttonDisabled = _useState10[0],
-      setButtonDisabled = _useState10[1];
-
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      spinner = _useState12[0],
-      setSpinner = _useState12[1];
-
-  function makePagination(data) {
-    setPagination({
-      current_page: data.current_page,
-      last_page: data.last_page,
-      next_page_url: data.next_page_url,
-      prev_page_url: data.prev_page_url
-    });
-  }
-
-  function loadMore() {
-    setUrl(pagination.next_page_url);
-    pagination.current_page != pagination.last_page && getBooks(true);
-  }
-
-  function reloadBooks() {
-    setLoading(true);
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/customerbooks', {
-      customer: customer,
-      library: library
-    }).then(function (response) {
-      setLoading(false);
-      setBooks(response.data.data);
-      setUrl(response.data.next_page_url);
-      setButtonDisabled(response.data.current_page === response.data.last_page ? true : false);
-      makePagination(response.data);
-    })["catch"](function (error) {
-      console.error(error.response);
-      reloadBooks();
-    });
-  }
-
-  function getBooks() {
-    var getMore = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    getMore && setSpinner(true);
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(url, {
-      customer: customer,
-      library: library
-    }).then(function (response) {
-      getMore ? setSpinner(false) : setLoading(false);
-      setBooks(books.length > 0 ? books.concat(response.data.data) : response.data.data);
-      setUrl(response.data.next_page_url);
-      setButtonDisabled(response.data.current_page === response.data.last_page ? true : false);
-      makePagination(response.data);
-    })["catch"](function (error) {
-      console.error(error.response);
-      getBooks();
-    });
-  }
-
-  function handleReturn(bookId) {
-    toggleLoading(true);
-    var data = {
-      book: bookId,
-      library: library,
-      customer: customer,
-      user: user.id
-    }; // return console.log(data)
-
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/returnbook', data).then(function (response) {
-      toggleLoading(false);
-      toggleToast();
-      reloadBooks();
-    })["catch"](function (error) {
-      console.error(error.response);
-    });
-  }
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    getBooks();
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["CardText"], {
-    className: "h3 text-left ml-3 mt-2"
-  }, "Book List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "mx-2 my-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["CardBody"], {
-    className: "text-center"
-  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    type: "sm"
-  }) : books.length < 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "No data") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Table"], {
-    responsive: true,
-    hover: true,
-    borderless: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, books.map(function (data) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-      className: "text-left",
-      key: data.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "text-capitalize font-weight-bold w-75"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-      to: "/books/".concat(data.books.id)
-    }, data.books.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "font-weight-light w-25"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-      color: "danger",
-      className: "btn-sm",
-      onClick: function onClick() {
-        return handleReturn(data.book_id);
-      }
-    }, "Return")));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-    color: "dark",
-    className: "btn-sm",
-    disabled: buttonDisabled,
-    onClick: loadMore
-  }, spinner ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_4__["Spinner"], {
-    className: "mx-3",
-    color: "light"
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "cui-chevron-bottom mx-3"
-  }))))));
-}
 
 /***/ }),
 
@@ -668,90 +462,6 @@ function Alerts(_ref) {
       variant: variant
     }, messages);
   });
-}
-
-/***/ }),
-
-/***/ "./resources/js/react/src/views/components/Loading.js":
-/*!************************************************************!*\
-  !*** ./resources/js/react/src/views/components/Loading.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loading; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
-
-
-function Loading(_ref) {
-  var type = _ref.type,
-      _ref$color = _ref.color,
-      color = _ref$color === void 0 ? 'primary' : _ref$color;
-
-  if (type == 'sm') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex align-items-center justify-content-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Spinner"], {
-      animation: "border",
-      id: "spinner",
-      className: "text-".concat(color),
-      role: "status"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "sr-only"
-    }, "Loading...")));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "loading-overlay"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
-    id: "loading-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Body, {
-    className: "d-flex justify-content-center align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Spinner"], {
-    animation: "border",
-    className: "text-".concat(color),
-    id: "spinner",
-    role: "status"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "sr-only"
-  }, "Loading...")))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/react/src/views/components/Toasts.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/react/src/views/components/Toasts.js ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Toasts; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
-
-
-function Toasts(_ref) {
-  var toasts = _ref.toasts,
-      toggle = _ref.toggle,
-      title = _ref.title,
-      text = _ref.text,
-      message = _ref.message;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Toast"], {
-    show: toasts,
-    onClose: function onClose() {
-      return toggle();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Toast"].Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-    className: "mr-auto"
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, text)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Toast"].Body, null, message));
 }
 
 /***/ })
