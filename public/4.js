@@ -47,23 +47,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Shared */ "./node_modules/@coreui/react/es/Shared/index.js");
 /* harmony import */ var _Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Shared/toggle-classes */ "./node_modules/@coreui/react/es/Shared/toggle-classes.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   display: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
@@ -71,8 +68,7 @@ var propTypes = {
   isOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   offCanvas: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'aside',
   display: '',
@@ -81,64 +77,61 @@ var defaultProps = {
   offCanvas: true
 };
 
-var AppAside = function (_Component) {
-  _inherits(AppAside, _Component);
+var AppAside = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppAside, _Component);
 
   function AppAside(props) {
-    _classCallCheck(this, AppAside);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.isFixed = _this.isFixed.bind(_this);
-    _this.isOffCanvas = _this.isOffCanvas.bind(_this);
-    _this.displayBreakpoint = _this.displayBreakpoint.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.isFixed = _this.isFixed.bind(_assertThisInitialized(_this));
+    _this.isOffCanvas = _this.isOffCanvas.bind(_assertThisInitialized(_this));
+    _this.displayBreakpoint = _this.displayBreakpoint.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppAside.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppAside.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.isFixed(this.props.fixed);
     this.isOffCanvas(this.props.offCanvas);
     this.displayBreakpoint(this.props.display);
   };
 
-  AppAside.prototype.isFixed = function isFixed(fixed) {
+  _proto.isFixed = function isFixed(fixed) {
     if (fixed) {
       document.body.classList.add('aside-menu-fixed');
     }
   };
 
-  AppAside.prototype.isOffCanvas = function isOffCanvas(offCanvas) {
+  _proto.isOffCanvas = function isOffCanvas(offCanvas) {
     if (offCanvas) {
       document.body.classList.add('aside-menu-off-canvas');
     }
   };
 
-  AppAside.prototype.displayBreakpoint = function displayBreakpoint(display) {
+  _proto.displayBreakpoint = function displayBreakpoint(display) {
     if (display && Object(_Shared__WEBPACK_IMPORTED_MODULE_3__["checkBreakpoint"])(display, _Shared__WEBPACK_IMPORTED_MODULE_3__["validBreakpoints"])) {
-      var cssClass = 'aside-menu-' + display + '-show';
+      var cssClass = "aside-menu-" + display + "-show";
       Object(_Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__["default"])(cssClass, _Shared__WEBPACK_IMPORTED_MODULE_3__["asideMenuCssClasses"], true);
     }
   };
 
-  AppAside.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     delete attributes.display;
     delete attributes.fixed;
     delete attributes.offCanvas;
     delete attributes.isOpen;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'aside-menu');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({}, attributes, { className: classes }),
-      children
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({}, attributes, {
+      className: classes
+    }), children);
   };
 
   return AppAside;
@@ -146,7 +139,6 @@ var AppAside = function (_Component) {
 
 AppAside.propTypes =  true ? propTypes : undefined;
 AppAside.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppAside);
 
 /***/ }),
@@ -168,23 +160,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Shared_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Shared/index */ "./node_modules/@coreui/react/es/Shared/index.js");
 /* harmony import */ var _Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Shared/toggle-classes */ "./node_modules/@coreui/react/es/Shared/toggle-classes.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   defaultOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
@@ -192,8 +181,7 @@ var propTypes = {
   mobile: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
   type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
-};
-
+} : undefined;
 var defaultProps = {
   defaultOpen: false,
   display: 'lg',
@@ -202,69 +190,66 @@ var defaultProps = {
   type: 'button'
 };
 
-var AppAsideToggler = function (_Component) {
-  _inherits(AppAsideToggler, _Component);
+var AppAsideToggler = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppAsideToggler, _Component);
 
   function AppAsideToggler(props) {
-    _classCallCheck(this, AppAsideToggler);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.asideToggle = _this.asideToggle.bind(_this);
-
+    _this = _Component.call(this, props) || this;
+    _this.asideToggle = _this.asideToggle.bind(_assertThisInitialized(_this));
     _this.state = {};
     return _this;
   }
 
-  AppAsideToggler.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppAsideToggler.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.toggle(this.props.defaultOpen);
   };
 
-  AppAsideToggler.prototype.toggle = function toggle(force) {
+  _proto.toggle = function toggle(force) {
     var _ref = [this.props.display, this.props.mobile],
         display = _ref[0],
         mobile = _ref[1];
-
     var cssClass = _Shared_index__WEBPACK_IMPORTED_MODULE_3__["asideMenuCssClasses"][0];
+
     if (!mobile && display && Object(_Shared_index__WEBPACK_IMPORTED_MODULE_3__["checkBreakpoint"])(display, _Shared_index__WEBPACK_IMPORTED_MODULE_3__["validBreakpoints"])) {
-      cssClass = 'aside-menu-' + display + '-show';
+      cssClass = "aside-menu-" + display + "-show";
     }
+
     Object(_Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__["default"])(cssClass, _Shared_index__WEBPACK_IMPORTED_MODULE_3__["asideMenuCssClasses"], force);
   };
 
-  AppAsideToggler.prototype.asideToggle = function asideToggle(e) {
+  _proto.asideToggle = function asideToggle(e) {
     e.preventDefault();
     this.toggle();
   };
 
-  AppAsideToggler.prototype.render = function render() {
+  _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        type = _props.type,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'type', 'tag']);
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        type = _this$props.type,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "type", "tag"]);
 
     delete attributes.defaultOpen;
     delete attributes.display;
     delete attributes.mobile;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'navbar-toggler');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({
-        type: type,
-        className: classes
-      }, attributes, {
-        onClick: function onClick(event) {
-          return _this2.asideToggle(event);
-        }
-      }),
-      children || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('span', { className: 'navbar-toggler-icon' })
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      type: type,
+      className: classes
+    }, attributes, {
+      onClick: function onClick(event) {
+        return _this2.asideToggle(event);
+      }
+    }), children || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "navbar-toggler-icon"
+    }));
   };
 
   return AppAsideToggler;
@@ -272,7 +257,6 @@ var AppAsideToggler = function (_Component) {
 
 AppAsideToggler.propTypes =  true ? propTypes : undefined;
 AppAsideToggler.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppAsideToggler);
 
 /***/ }),
@@ -294,31 +278,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
 
-
-var routes = void 0;
+var routes;
 
 var getPaths = function getPaths(pathname) {
   var paths = ['/'];
-
   if (pathname === '/') return paths;
-
   pathname.split('/').reduce(function (prev, curr) {
-    var currPath = prev + '/' + curr;
+    var currPath = prev + "/" + curr;
     paths.push(currPath);
     return currPath;
   });
@@ -327,33 +304,28 @@ var getPaths = function getPaths(pathname) {
 
 var findRouteName = function findRouteName(url) {
   var aroute = routes.find(function (route) {
-    return Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["matchPath"])(url, { path: route.path, exact: route.exact });
+    return Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["matchPath"])(url, {
+      path: route.path,
+      exact: route.exact
+    });
   });
   return aroute && aroute.name ? aroute.name : null;
 };
 
 var BreadcrumbsItem = function BreadcrumbsItem(_ref) {
   var match = _ref.match;
-
   var routeName = findRouteName(match.url);
+
   if (routeName) {
-    return (
-      // eslint-disable-next-line react/prop-types
-      match.isExact ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["BreadcrumbItem"],
-        { active: true },
-        routeName
-      ) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["BreadcrumbItem"],
-        null,
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-          react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"],
-          { to: match.url || '' },
-          routeName
-        )
-      )
+    return (// eslint-disable-next-line react/prop-types
+      match.isExact ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["BreadcrumbItem"], {
+        active: true
+      }, routeName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["BreadcrumbItem"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: match.url || ''
+      }, routeName))
     );
   }
+
   return null;
 };
 
@@ -366,57 +338,63 @@ BreadcrumbsItem.propTypes =  true ? {
 var Breadcrumbs = function Breadcrumbs(args) {
   var paths = getPaths(args.location.pathname);
   var items = paths.map(function (path, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { key: i.toString(), path: path, component: BreadcrumbsItem });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      key: i.toString(),
+      path: path,
+      component: BreadcrumbsItem
+    });
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-    reactstrap__WEBPACK_IMPORTED_MODULE_2__["Breadcrumb"],
-    null,
-    items
-  );
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Breadcrumb"], null, items);
 };
 
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   appRoutes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.any,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div',
   className: '',
-  appRoutes: [{ path: '/', exact: true, name: 'Home', component: null }]
+  appRoutes: [{
+    path: '/',
+    exact: true,
+    name: 'Home',
+    component: null
+  }]
 };
 
-var AppBreadcrumb = function (_Component) {
-  _inherits(AppBreadcrumb, _Component);
+var AppBreadcrumb = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppBreadcrumb, _Component);
 
   function AppBreadcrumb(props) {
-    _classCallCheck(this, AppBreadcrumb);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.state = { routes: props.appRoutes };
+    _this = _Component.call(this, props) || this;
+    _this.state = {
+      routes: props.appRoutes
+    };
     routes = _this.state.routes;
     return _this;
   }
 
-  AppBreadcrumb.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'tag']);
+  var _proto = AppBreadcrumb.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "tag"]);
 
     delete attributes.children;
     delete attributes.appRoutes;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_4___default()(className);
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      { className: classes },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], _extends({ path: '/:path', component: Breadcrumbs }, attributes))
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, {
+      className: classes
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], _extends({
+      path: "/:path",
+      component: Breadcrumbs
+    }, attributes)));
   };
 
   return AppBreadcrumb;
@@ -424,7 +402,6 @@ var AppBreadcrumb = function (_Component) {
 
 AppBreadcrumb.propTypes =  true ? propTypes : undefined;
 AppBreadcrumb.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppBreadcrumb);
 
 /***/ }),
@@ -445,31 +422,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
-
-var routes = void 0;
-var router = void 0;
+var routes;
+var router;
 
 var getPaths = function getPaths(pathname) {
   var paths = ['/'];
-
   if (pathname === '/') return paths;
-
   pathname.split('/').reduce(function (prev, curr) {
-    var currPath = prev + '/' + curr;
+    var currPath = prev + "/" + curr;
     paths.push(currPath);
     return currPath;
   });
@@ -479,34 +449,29 @@ var getPaths = function getPaths(pathname) {
 var findRouteName2 = function findRouteName2(url) {
   var matchPath = router.matchPath;
   var aroute = routes.find(function (route) {
-    return matchPath(url, { path: route.path, exact: route.exact });
+    return matchPath(url, {
+      path: route.path,
+      exact: route.exact
+    });
   });
   return aroute && aroute.name ? aroute.name : null;
 };
 
 var BreadcrumbsItem2 = function BreadcrumbsItem2(_ref) {
   var match = _ref.match;
-
   var routeName = findRouteName2(match.url);
   var Link = router.Link;
+
   if (routeName) {
-    return (
-      // eslint-disable-next-line react/prop-types
-      match.isExact ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["BreadcrumbItem"],
-        { active: true },
-        routeName
-      ) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["BreadcrumbItem"],
-        null,
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-          Link,
-          { to: match.url || '' },
-          routeName
-        )
-      )
+    return (// eslint-disable-next-line react/prop-types
+      match.isExact ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["BreadcrumbItem"], {
+        active: true
+      }, routeName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["BreadcrumbItem"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+        to: match.url || ''
+      }, routeName))
     );
   }
+
   return null;
 };
 
@@ -520,62 +485,67 @@ var Breadcrumbs2 = function Breadcrumbs2(args) {
   var Route = router.Route;
   var paths = getPaths(args.location.pathname);
   var items = paths.map(function (path, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, { key: i.toString(), path: path, component: BreadcrumbsItem2 });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, {
+      key: i.toString(),
+      path: path,
+      component: BreadcrumbsItem2
+    });
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-    reactstrap__WEBPACK_IMPORTED_MODULE_1__["Breadcrumb"],
-    null,
-    items
-  );
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Breadcrumb"], null, items);
 };
 
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
   appRoutes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.any,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string]),
   router: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.any
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div',
   className: '',
-  appRoutes: [{ path: '/', exact: true, name: 'Home', component: null }]
+  appRoutes: [{
+    path: '/',
+    exact: true,
+    name: 'Home',
+    component: null
+  }]
 };
 
-var AppBreadcrumb2 = function (_Component) {
-  _inherits(AppBreadcrumb2, _Component);
+var AppBreadcrumb2 = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppBreadcrumb2, _Component);
 
   function AppBreadcrumb2(props) {
-    _classCallCheck(this, AppBreadcrumb2);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.state = { routes: props.appRoutes };
+    _this = _Component.call(this, props) || this;
+    _this.state = {
+      routes: props.appRoutes
+    };
     routes = _this.state.routes;
     router = props.router;
     return _this;
   }
 
-  AppBreadcrumb2.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'tag']);
+  var _proto = AppBreadcrumb2.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "tag"]);
 
     delete attributes.children;
     delete attributes.appRoutes;
     delete attributes.router;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()(className);
-
     var Route = router.Route;
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      { className: classes },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, _extends({ path: '/:path', component: Breadcrumbs2 }, attributes))
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, {
+      className: classes
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Route, _extends({
+      path: "/:path",
+      component: Breadcrumbs2
+    }, attributes)));
   };
 
   return AppBreadcrumb2;
@@ -583,7 +553,6 @@ var AppBreadcrumb2 = function (_Component) {
 
 AppBreadcrumb2.propTypes =  true ? propTypes : undefined;
 AppBreadcrumb2.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppBreadcrumb2);
 
 /***/ }),
@@ -603,70 +572,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   fixed: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'footer',
   fixed: false
 };
 
-var AppFooter = function (_Component) {
-  _inherits(AppFooter, _Component);
+var AppFooter = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppFooter, _Component);
 
   function AppFooter(props) {
-    _classCallCheck(this, AppFooter);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.isFixed = _this.isFixed.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.isFixed = _this.isFixed.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppFooter.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppFooter.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.isFixed(this.props.fixed);
   };
 
-  AppFooter.prototype.isFixed = function isFixed(fixed) {
+  _proto.isFixed = function isFixed(fixed) {
     if (fixed) {
       document.body.classList.add('footer-fixed');
     }
   };
 
-  AppFooter.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     delete attributes.fixed;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'app-footer');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes }, attributes),
-      children
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children);
   };
 
   return AppFooter;
@@ -674,7 +636,6 @@ var AppFooter = function (_Component) {
 
 AppFooter.propTypes =  true ? propTypes : undefined;
 AppFooter.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppFooter);
 
 /***/ }),
@@ -694,71 +655,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   fixed: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'header',
   fixed: false
 };
 
-var AppHeader = function (_Component) {
-  _inherits(AppHeader, _Component);
+var AppHeader = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppHeader, _Component);
 
   function AppHeader() {
-    _classCallCheck(this, AppHeader);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  AppHeader.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppHeader.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.isFixed(this.props.fixed);
   };
 
-  AppHeader.prototype.isFixed = function isFixed(fixed) {
+  _proto.isFixed = function isFixed(fixed) {
     if (fixed) {
       document.body.classList.add('header-fixed');
     }
-  };
-
-  // breakpoint(breakpoint) {
+  } // breakpoint(breakpoint) {
   //   return breakpoint || '';
   // }
+  ;
 
-  AppHeader.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     delete attributes.fixed;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'app-header', 'navbar');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes }, attributes),
-      children
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children);
   };
 
   return AppHeader;
@@ -766,7 +716,6 @@ var AppHeader = function (_Component) {
 
 AppHeader.propTypes =  true ? propTypes : undefined;
 AppHeader.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppHeader);
 
 /***/ }),
@@ -785,60 +734,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
 
-
-var propTypes = _extends({
+var propTypes =  true ? _extends({
   children: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.node,
   direction: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string
-}, reactstrap__WEBPACK_IMPORTED_MODULE_1__["Dropdown"].propTypes);
-
+}, reactstrap__WEBPACK_IMPORTED_MODULE_1__["Dropdown"].propTypes) : undefined;
 var defaultProps = {
   direction: 'down'
 };
 
-var AppHeaderDropdown = function (_Component) {
-  _inherits(AppHeaderDropdown, _Component);
+var AppHeaderDropdown = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppHeaderDropdown, _Component);
 
   function AppHeaderDropdown(props) {
-    _classCallCheck(this, AppHeaderDropdown);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.toggle = _this.toggle.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.toggle = _this.toggle.bind(_assertThisInitialized(_this));
     _this.state = {
       dropdownOpen: false
     };
     return _this;
   }
 
-  AppHeaderDropdown.prototype.toggle = function toggle() {
+  var _proto = AppHeaderDropdown.prototype;
+
+  _proto.toggle = function toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
   };
 
-  AppHeaderDropdown.prototype.render = function render() {
-    var _props = this.props,
-        children = _props.children,
-        attributes = _objectWithoutProperties(_props, ['children']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        children = _this$props.children,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["children"]);
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      reactstrap__WEBPACK_IMPORTED_MODULE_1__["Dropdown"],
-      _extends({ nav: true, isOpen: this.state.dropdownOpen, toggle: this.toggle }, attributes),
-      children
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Dropdown"], _extends({
+      nav: true,
+      isOpen: this.state.dropdownOpen,
+      toggle: this.toggle
+    }, attributes), children);
   };
 
   return AppHeaderDropdown;
@@ -846,7 +792,6 @@ var AppHeaderDropdown = function (_Component) {
 
 AppHeaderDropdown.propTypes =  true ? propTypes : undefined;
 AppHeaderDropdown.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppHeaderDropdown);
 
 /***/ }),
@@ -866,60 +811,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   brand: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
   full: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
   minimized: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'a'
 };
 
-var AppNavbarBrand = function (_Component) {
-  _inherits(AppNavbarBrand, _Component);
+var AppNavbarBrand = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppNavbarBrand, _Component);
 
   function AppNavbarBrand() {
-    _classCallCheck(this, AppNavbarBrand);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  AppNavbarBrand.prototype.imgSrc = function imgSrc(brand) {
+  var _proto = AppNavbarBrand.prototype;
+
+  _proto.imgSrc = function imgSrc(brand) {
     return brand.src ? brand.src : '';
   };
 
-  AppNavbarBrand.prototype.imgWidth = function imgWidth(brand) {
+  _proto.imgWidth = function imgWidth(brand) {
     return brand.width ? brand.width : 'auto';
   };
 
-  AppNavbarBrand.prototype.imgHeight = function imgHeight(brand) {
+  _proto.imgHeight = function imgHeight(brand) {
     return brand.height ? brand.height : 'auto';
   };
 
-  AppNavbarBrand.prototype.imgAlt = function imgAlt(brand) {
+  _proto.imgAlt = function imgAlt(brand) {
     return brand.alt ? brand.alt : '';
   };
 
-  AppNavbarBrand.prototype.navbarBrandImg = function navbarBrandImg(props, classBrand, key) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', {
+  _proto.navbarBrandImg = function navbarBrandImg(props, classBrand, key) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: this.imgSrc(props),
       width: this.imgWidth(props),
       height: this.imgHeight(props),
@@ -929,37 +868,37 @@ var AppNavbarBrand = function (_Component) {
     });
   };
 
-  AppNavbarBrand.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'navbar-brand');
-
     var img = [];
+
     if (this.props.brand) {
       var props = this.props.brand;
       var classBrand = 'navbar-brand';
       img.push(this.navbarBrandImg(props, classBrand, img.length + 1));
     }
+
     if (this.props.full) {
-      var _props2 = this.props.full;
+      var _props = this.props.full;
       var _classBrand = 'navbar-brand-full';
-      img.push(this.navbarBrandImg(_props2, _classBrand, img.length + 1));
-    }
-    if (this.props.minimized) {
-      var _props3 = this.props.minimized;
-      var _classBrand2 = 'navbar-brand-minimized';
-      img.push(this.navbarBrandImg(_props3, _classBrand2, img.length + 1));
+      img.push(this.navbarBrandImg(_props, _classBrand, img.length + 1));
     }
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({}, attributes, { className: classes }),
-      children || img
-    );
+    if (this.props.minimized) {
+      var _props2 = this.props.minimized;
+      var _classBrand2 = 'navbar-brand-minimized';
+      img.push(this.navbarBrandImg(_props2, _classBrand2, img.length + 1));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({}, attributes, {
+      className: classes
+    }), children || img);
   };
 
   return AppNavbarBrand;
@@ -967,7 +906,6 @@ var AppNavbarBrand = function (_Component) {
 
 AppNavbarBrand.propTypes =  true ? propTypes : undefined;
 AppNavbarBrand.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppNavbarBrand);
 
 /***/ }),
@@ -986,11 +924,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validBreakpoints", function() { return validBreakpoints; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkBreakpoint", function() { return checkBreakpoint; });
 var sidebarCssClasses = ['sidebar-show', 'sidebar-sm-show', 'sidebar-md-show', 'sidebar-lg-show', 'sidebar-xl-show'];
-
 var asideMenuCssClasses = ['aside-menu-show', 'aside-menu-sm-show', 'aside-menu-md-show', 'aside-menu-lg-show', 'aside-menu-xl-show'];
-
 var validBreakpoints = ['sm', 'md', 'lg', 'xl'];
-
 function checkBreakpoint(breakpoint, list) {
   return list.indexOf(breakpoint) > -1;
 }
@@ -1008,6 +943,7 @@ function checkBreakpoint(breakpoint, list) {
   if (!ElementProto) {
     return;
   }
+
   if (typeof ElementProto.matches !== 'function') {
     ElementProto.matches = ElementProto.msMatchesSelector || ElementProto.mozMatchesSelector || ElementProto.webkitMatchesSelector || function matches(selector) {
       var element = this;
@@ -1030,6 +966,7 @@ function checkBreakpoint(breakpoint, list) {
         if (element.matches(selector)) {
           return element;
         }
+
         element = element.parentNode;
       }
 
@@ -1061,7 +998,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /***/ }),
 
 /***/ "./node_modules/@coreui/react/es/Shared/layout/layout.js":
@@ -1073,20 +1009,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var _class, _temp;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LayoutHelper = (_temp = _class = function () {
-  function LayoutHelper() {
-    _classCallCheck(this, LayoutHelper);
-  }
+var LayoutHelper = /*#__PURE__*/function () {
+  function LayoutHelper() {}
 
   LayoutHelper.sidebarToggle = function sidebarToggle(toggle) {
     var minimize = arguments.length ? toggle : !this.elClassList.contains('sidebar-minimized');
     this.sidebarMinimize(minimize);
     this.brandMinimize(minimize);
-    this.sidebarPSToggle(!minimize); /*remove PS on sidebar minimized*/
+    this.sidebarPSToggle(!minimize);
+    /*remove PS on sidebar minimized*/
   };
 
   LayoutHelper.sidebarMinimize = function sidebarMinimize(force) {
@@ -1095,13 +1028,10 @@ var LayoutHelper = (_temp = _class = function () {
 
   LayoutHelper.brandMinimize = function brandMinimize(force) {
     this.toggleClass('brand-minimized', force);
-  };
-
-  //  sidebar perfect scrollbar ugly hack
-
+  } //  sidebar perfect scrollbar ugly hack
+  ;
 
   LayoutHelper.sidebarPSToggle = function sidebarPSToggle(toggle) {
-
     if (this.isOnMobile()) {
       toggle = true;
     } else {
@@ -1109,18 +1039,25 @@ var LayoutHelper = (_temp = _class = function () {
       toggle = !isSidebarMinimized;
     }
 
-    var ps = { y: { rail: {}, thumb: {} } };
+    var ps = {
+      y: {
+        rail: {},
+        thumb: {}
+      }
+    };
     var isRtl = getComputedStyle(document.documentElement).direction === 'rtl';
     var sidebar = document.querySelector('.sidebar-nav');
     ps.y.rail.on = document.querySelector('.sidebar-nav .ps__rail-y');
     ps.y.rail.off = document.querySelector('.sidebar-nav .ps__rail-y-off');
     ps.y.thumb.on = document.querySelector('.sidebar-nav .ps__thumb-y');
     ps.y.thumb.off = document.querySelector('.sidebar-nav .ps__thumb-y-off');
+
     if (sidebar) {
       if (toggle) {
         sidebar.classList.add('ps');
         sidebar.classList.add('ps-container');
         sidebar.classList.add('ps--active-y');
+
         if (ps.y.rail.off) {
           ps.y.rail.off.classList.add('ps__rail-y');
           ps.y.rail.off.removeAttribute('style');
@@ -1128,6 +1065,7 @@ var LayoutHelper = (_temp = _class = function () {
           ps.y.rail.off.style.right = isRtl ? 'unset' : '0px';
           ps.y.rail.off.classList.remove('ps__rail-y-off');
         }
+
         if (ps.y.thumb.off) {
           ps.y.thumb.off.removeAttribute('style');
           ps.y.thumb.off.classList.add('ps__thumb-y');
@@ -1139,11 +1077,13 @@ var LayoutHelper = (_temp = _class = function () {
           ps.y.rail.on.removeAttribute('style');
           ps.y.rail.on.classList.remove('ps__rail-y');
         }
+
         if (ps.y.thumb.on) {
           ps.y.thumb.on.classList.add('ps__thumb-y-off');
           ps.y.thumb.on.removeAttribute('style');
           ps.y.thumb.on.classList.remove('ps__thumb-y');
         }
+
         sidebar.classList.remove('ps');
         sidebar.classList.remove('ps-container');
         sidebar.classList.remove('ps--active-y');
@@ -1152,7 +1092,6 @@ var LayoutHelper = (_temp = _class = function () {
   };
 
   LayoutHelper.toggleClass = function toggleClass(className, force) {
-
     if (force === true) {
       this.elClassList.add(className);
     } else if (force === false) {
@@ -1160,13 +1099,16 @@ var LayoutHelper = (_temp = _class = function () {
     } else {
       this.elClassList.toggle(className);
     }
+
     return this.elClassList.contains(className);
   };
 
   LayoutHelper.isOnMobile = function isOnMobile() {
     var onMobile = false;
+
     try {
       var minimizerElement = document.querySelector('.sidebar-minimizer');
+
       if (minimizerElement) {
         onMobile = getComputedStyle(minimizerElement).getPropertyValue('display') === 'none';
       } else {
@@ -1177,12 +1119,14 @@ var LayoutHelper = (_temp = _class = function () {
       // eslint-disable-next-line
       console.warn('CoreUI isOnMobile failed to getComputedStyle', ignore);
     }
+
     return onMobile;
   };
 
   return LayoutHelper;
-}(), _class.elClassList = document.body.classList, _temp);
+}();
 
+_defineProperty(LayoutHelper, "elClassList", document.body.classList);
 
 /* harmony default export */ __webpack_exports__["default"] = (LayoutHelper);
 
@@ -1204,6 +1148,7 @@ function toggleClasses(toggleClass, classList, force) {
   removeClassList.map(function (className) {
     return document.body.classList.remove(className);
   });
+
   if (force === true) {
     document.body.classList.add(toggleClass);
   } else if (force === false) {
@@ -1211,6 +1156,7 @@ function toggleClasses(toggleClass, classList, force) {
   } else {
     document.body.classList.toggle(toggleClass);
   }
+
   return document.body.classList.contains(toggleClass);
 }
 
@@ -1237,15 +1183,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_element_closest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Shared/element-closest */ "./node_modules/@coreui/react/es/Shared/element-closest.js");
 /* harmony import */ var _Shared_element_closest__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Shared_element_closest__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Shared/layout/layout */ "./node_modules/@coreui/react/es/Shared/layout/layout.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
@@ -1254,9 +1198,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string,
   compact: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool,
@@ -1267,8 +1209,7 @@ var propTypes = {
   offCanvas: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool,
   staticContext: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.any,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div',
   compact: false,
@@ -1279,24 +1220,25 @@ var defaultProps = {
   offCanvas: false
 };
 
-var AppSidebar = function (_Component) {
-  _inherits(AppSidebar, _Component);
+var AppSidebar = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebar, _Component);
 
   function AppSidebar(props) {
-    _classCallCheck(this, AppSidebar);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.isCompact = _this.isCompact.bind(_this);
-    _this.isFixed = _this.isFixed.bind(_this);
-    _this.isMinimized = _this.isMinimized.bind(_this);
-    _this.isOffCanvas = _this.isOffCanvas.bind(_this);
-    _this.displayBreakpoint = _this.displayBreakpoint.bind(_this);
-    _this.hideMobile = _this.hideMobile.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.isCompact = _this.isCompact.bind(_assertThisInitialized(_this));
+    _this.isFixed = _this.isFixed.bind(_assertThisInitialized(_this));
+    _this.isMinimized = _this.isMinimized.bind(_assertThisInitialized(_this));
+    _this.isOffCanvas = _this.isOffCanvas.bind(_assertThisInitialized(_this));
+    _this.displayBreakpoint = _this.displayBreakpoint.bind(_assertThisInitialized(_this));
+    _this.hideMobile = _this.hideMobile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppSidebar.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppSidebar.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     this.displayBreakpoint(this.props.display);
     this.isCompact(this.props.compact);
     this.isFixed(this.props.fixed);
@@ -1304,46 +1246,47 @@ var AppSidebar = function (_Component) {
     this.isOffCanvas(this.props.offCanvas);
   };
 
-  AppSidebar.prototype.isCompact = function isCompact(compact) {
+  _proto.isCompact = function isCompact(compact) {
     if (compact) {
       document.body.classList.add('sidebar-compact');
     }
   };
 
-  AppSidebar.prototype.isFixed = function isFixed(fixed) {
+  _proto.isFixed = function isFixed(fixed) {
     if (fixed) {
       document.body.classList.add('sidebar-fixed');
     }
   };
 
-  AppSidebar.prototype.isMinimized = function isMinimized(minimized) {
+  _proto.isMinimized = function isMinimized(minimized) {
     _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_6__["default"].sidebarToggle(minimized);
   };
 
-  AppSidebar.prototype.isOffCanvas = function isOffCanvas(offCanvas) {
+  _proto.isOffCanvas = function isOffCanvas(offCanvas) {
     if (offCanvas) {
       document.body.classList.add('sidebar-off-canvas');
     }
   };
 
-  AppSidebar.prototype.displayBreakpoint = function displayBreakpoint(display) {
-    var cssTemplate = 'sidebar-' + display + '-show';
+  _proto.displayBreakpoint = function displayBreakpoint(display) {
+    var cssTemplate = "sidebar-" + display + "-show";
     var _sidebarCssClasses$ = _Shared__WEBPACK_IMPORTED_MODULE_3__["sidebarCssClasses"][0],
         cssClass = _sidebarCssClasses$[0];
 
     if (display && _Shared__WEBPACK_IMPORTED_MODULE_3__["sidebarCssClasses"].indexOf(cssTemplate) > -1) {
       cssClass = cssTemplate;
     }
+
     document.body.classList.add(cssClass);
   };
 
-  AppSidebar.prototype.hideMobile = function hideMobile() {
+  _proto.hideMobile = function hideMobile() {
     if (document.body.classList.contains('sidebar-show')) {
       document.body.classList.remove('sidebar-show');
     }
   };
 
-  AppSidebar.prototype.onClickOut = function onClickOut(e) {
+  _proto.onClickOut = function onClickOut(e) {
     if (typeof window !== 'undefined' && document.body.classList.contains('sidebar-show')) {
       if (!e.target.closest('[data-sidebar-toggler]')) {
         this.hideMobile();
@@ -1351,14 +1294,14 @@ var AppSidebar = function (_Component) {
     }
   };
 
-  AppSidebar.prototype.render = function render() {
+  _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     delete attributes.compact;
     delete attributes.display;
@@ -1367,21 +1310,15 @@ var AppSidebar = function (_Component) {
     delete attributes.offCanvas;
     delete attributes.isOpen;
     delete attributes.staticContext;
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'sidebar'); // sidebar-nav root
 
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'sidebar');
-
-    // sidebar-nav root
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      react_onclickout__WEBPACK_IMPORTED_MODULE_4___default.a,
-      { onClickOut: function onClickOut(e) {
-          _this2.onClickOut(e);
-        } },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        Tag,
-        _extends({ className: classes }, attributes),
-        children
-      )
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_onclickout__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      onClickOut: function onClickOut(e) {
+        _this2.onClickOut(e);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children));
   };
 
   return AppSidebar;
@@ -1389,7 +1326,6 @@ var AppSidebar = function (_Component) {
 
 AppSidebar.propTypes =  true ? propTypes : undefined;
 AppSidebar.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebar);
 
 /***/ }),
@@ -1409,53 +1345,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div'
 };
 
-var AppSidebarFooter = function (_Component) {
-  _inherits(AppSidebarFooter, _Component);
+var AppSidebarFooter = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarFooter, _Component);
 
   function AppSidebarFooter() {
-    _classCallCheck(this, AppSidebarFooter);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  AppSidebarFooter.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  var _proto = AppSidebarFooter.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'sidebar-footer');
-    var footer = children ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes }, attributes),
-      children
-    ) : null;
-
+    var footer = children ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children) : null;
     return footer;
   };
 
@@ -1464,7 +1391,6 @@ var AppSidebarFooter = function (_Component) {
 
 AppSidebarFooter.propTypes =  true ? propTypes : undefined;
 AppSidebarFooter.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarFooter);
 
 /***/ }),
@@ -1484,53 +1410,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div'
 };
 
-var AppSidebarForm = function (_Component) {
-  _inherits(AppSidebarForm, _Component);
+var AppSidebarForm = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarForm, _Component);
 
   function AppSidebarForm() {
-    _classCallCheck(this, AppSidebarForm);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  AppSidebarForm.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  var _proto = AppSidebarForm.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'sidebar-form');
-    var form = children ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes }, attributes),
-      children
-    ) : null;
-
+    var form = children ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children) : null;
     return form;
   };
 
@@ -1539,7 +1456,6 @@ var AppSidebarForm = function (_Component) {
 
 AppSidebarForm.propTypes =  true ? propTypes : undefined;
 AppSidebarForm.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarForm);
 
 /***/ }),
@@ -1559,53 +1475,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'div'
 };
 
-var AppSidebarHeader = function (_Component) {
-  _inherits(AppSidebarHeader, _Component);
+var AppSidebarHeader = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarHeader, _Component);
 
   function AppSidebarHeader() {
-    _classCallCheck(this, AppSidebarHeader);
-
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  AppSidebarHeader.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+  var _proto = AppSidebarHeader.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'sidebar-header');
-    var header = children ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes }, attributes),
-      children
-    ) : null;
-
+    var header = children ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes
+    }, attributes), children) : null;
     return header;
   };
 
@@ -1614,7 +1521,6 @@ var AppSidebarHeader = function (_Component) {
 
 AppSidebarHeader.propTypes =  true ? propTypes : undefined;
 AppSidebarHeader.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarHeader);
 
 /***/ }),
@@ -1635,74 +1541,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Shared/layout/layout */ "./node_modules/@coreui/react/es/Shared/layout/layout.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
-
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
   type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'button',
   type: 'button'
 };
 
-var AppSidebarMinimizer = function (_Component) {
-  _inherits(AppSidebarMinimizer, _Component);
+var AppSidebarMinimizer = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarMinimizer, _Component);
 
   function AppSidebarMinimizer(props) {
-    _classCallCheck(this, AppSidebarMinimizer);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.handleClick = _this.handleClick.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppSidebarMinimizer.prototype.componentDidMount = function componentDidMount() {
+  var _proto = AppSidebarMinimizer.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
     var isMinimized = document.body.classList.contains('sidebar-minimized');
     _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_3__["default"].sidebarPSToggle(!isMinimized);
   };
 
-  AppSidebarMinimizer.prototype.handleClick = function handleClick() {
+  _proto.handleClick = function handleClick() {
     _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_3__["default"].sidebarToggle();
   };
 
-  AppSidebarMinimizer.prototype.render = function render() {
+  _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        type = _props.type,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag', 'type']);
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        type = _this$props.type,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag", "type"]);
 
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'sidebar-minimizer', 'mt-auto');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ className: classes, type: type }, attributes, { onClick: function onClick(event) {
-          return _this2.handleClick(event);
-        } }),
-      children
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      className: classes,
+      type: type
+    }, attributes, {
+      onClick: function onClick(event) {
+        return _this2.handleClick(event);
+      }
+    }), children);
   };
 
   return AppSidebarMinimizer;
@@ -1710,7 +1612,6 @@ var AppSidebarMinimizer = function (_Component) {
 
 AppSidebarMinimizer.propTypes =  true ? propTypes : undefined;
 AppSidebarMinimizer.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarMinimizer);
 
 /***/ }),
@@ -1736,15 +1637,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_perfect_scrollbar_dist_css_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-perfect-scrollbar/dist/css/styles.css */ "./node_modules/react-perfect-scrollbar/dist/css/styles.css");
 /* harmony import */ var react_perfect_scrollbar_dist_css_styles_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_perfect_scrollbar_dist_css_styles_css__WEBPACK_IMPORTED_MODULE_6__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
@@ -1753,8 +1652,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string,
   navConfig: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.any,
@@ -1762,8 +1660,7 @@ var propTypes = {
   isOpen: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
   staticContext: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.any,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string])
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'nav',
   navConfig: {
@@ -1771,216 +1668,187 @@ var defaultProps = {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: { variant: 'info', text: 'NEW' }
+      badge: {
+        variant: 'info',
+        text: 'NEW'
+      }
     }]
   },
   isOpen: false
 };
 
-var AppSidebarNav = function (_Component) {
-  _inherits(AppSidebarNav, _Component);
+var AppSidebarNav = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarNav, _Component);
 
   function AppSidebarNav(props) {
-    _classCallCheck(this, AppSidebarNav);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.activeRoute = _this.activeRoute.bind(_this);
-    _this.hideMobile = _this.hideMobile.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.activeRoute = _this.activeRoute.bind(_assertThisInitialized(_this));
+    _this.hideMobile = _this.hideMobile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppSidebarNav.prototype.handleClick = function handleClick(e) {
+  var _proto = AppSidebarNav.prototype;
+
+  _proto.handleClick = function handleClick(e) {
     e.preventDefault();
     e.currentTarget.parentElement.classList.toggle('open');
   };
 
-  AppSidebarNav.prototype.activeRoute = function activeRoute(routeName, props) {
+  _proto.activeRoute = function activeRoute(routeName, props) {
     return props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
   };
 
-  AppSidebarNav.prototype.hideMobile = function hideMobile() {
+  _proto.hideMobile = function hideMobile() {
     if (document.body.classList.contains('sidebar-show')) {
       document.body.classList.toggle('sidebar-show');
     }
-  };
+  } // nav list
+  ;
 
-  // nav list
-
-
-  AppSidebarNav.prototype.navList = function navList(items) {
+  _proto.navList = function navList(items) {
     var _this2 = this;
 
     return items.map(function (item, index) {
       return _this2.navType(item, index);
     });
-  };
+  } // nav type
+  ;
 
-  // nav type
-
-
-  AppSidebarNav.prototype.navType = function navType(item, idx) {
+  _proto.navType = function navType(item, idx) {
     return item.title ? this.navTitle(item, idx) : item.divider ? this.navDivider(item, idx) : item.label ? this.navLabel(item, idx) : item.children ? this.navDropdown(item, idx) : this.navItem(item, idx);
-  };
+  } // nav list section title
+  ;
 
-  // nav list section title
+  _proto.navTitle = function navTitle(title, key) {
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-title', title["class"]);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: key,
+      className: classes
+    }, this.navWrapper(title), " ");
+  } // simple wrapper for nav-title item
+  ;
 
-
-  AppSidebarNav.prototype.navTitle = function navTitle(title, key) {
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-title', title.class);
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'li',
-      { key: key, className: classes },
-      this.navWrapper(title),
-      ' '
-    );
-  };
-
-  // simple wrapper for nav-title item
-
-
-  AppSidebarNav.prototype.navWrapper = function navWrapper(item) {
+  _proto.navWrapper = function navWrapper(item) {
     return item.wrapper && item.wrapper.element ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(item.wrapper.element, item.wrapper.attributes, item.name) : item.name;
-  };
+  } // nav list divider
+  ;
 
-  // nav list divider
+  _proto.navDivider = function navDivider(divider, key) {
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('divider', divider["class"]);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: key,
+      className: classes
+    });
+  } // nav label with nav link
+  ;
 
-
-  AppSidebarNav.prototype.navDivider = function navDivider(divider, key) {
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('divider', divider.class);
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('li', { key: key, className: classes });
-  };
-
-  // nav label with nav link
-
-
-  AppSidebarNav.prototype.navLabel = function navLabel(item, key) {
+  _proto.navLabel = function navLabel(item, key) {
     var classes = {
-      item: classnames__WEBPACK_IMPORTED_MODULE_3___default()('hidden-cn', item.class),
-      link: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-label', item.class ? item.class : ''),
-      icon: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-icon', !item.icon ? 'fa fa-circle' : item.icon, item.label.variant ? 'text-' + item.label.variant : '', item.label.class ? item.label.class : '')
+      item: classnames__WEBPACK_IMPORTED_MODULE_3___default()('hidden-cn', item["class"]),
+      link: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-label', item["class"] ? item["class"] : ''),
+      icon: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-icon', !item.icon ? 'fa fa-circle' : item.icon, item.label.variant ? "text-" + item.label.variant : '', item.label["class"] ? item.label["class"] : '')
     };
     return this.navLink(item, key, classes);
-  };
+  } // nav dropdown
+  ;
 
-  // nav dropdown
-
-
-  AppSidebarNav.prototype.navDropdown = function navDropdown(item, key) {
+  _proto.navDropdown = function navDropdown(item, key) {
     var classIcon = classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-icon', item.icon);
     var attributes = JSON.parse(JSON.stringify(item.attributes || {}));
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-link', 'nav-dropdown-toggle', item.class, attributes.class);
-    delete attributes.class;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'li',
-      { key: key, className: this.activeRoute(item.url, this.props) },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        'a',
-        _extends({ className: classes, href: '#', onClick: this.handleClick }, attributes),
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('i', { className: classIcon }),
-        item.name,
-        this.navBadge(item.badge)
-      ),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        'ul',
-        { className: 'nav-dropdown-items' },
-        this.navList(item.children)
-      )
-    );
-  };
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-link', 'nav-dropdown-toggle', item["class"], attributes["class"]);
+    delete attributes["class"];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: key,
+      className: this.activeRoute(item.url, this.props)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", _extends({
+      className: classes,
+      href: "#",
+      onClick: this.handleClick
+    }, attributes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: classIcon
+    }), item.name, this.navBadge(item.badge)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "nav-dropdown-items"
+    }, this.navList(item.children)));
+  } // nav item with nav link
+  ;
 
-  // nav item with nav link
-
-
-  AppSidebarNav.prototype.navItem = function navItem(item, key) {
+  _proto.navItem = function navItem(item, key) {
     var classes = {
-      item: classnames__WEBPACK_IMPORTED_MODULE_3___default()(item.class),
-      link: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-link', item.variant ? 'nav-link-' + item.variant : ''),
+      item: classnames__WEBPACK_IMPORTED_MODULE_3___default()(item["class"]),
+      link: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-link', item.variant ? "nav-link-" + item.variant : ''),
       icon: classnames__WEBPACK_IMPORTED_MODULE_3___default()('nav-icon', item.icon)
     };
     return this.navLink(item, key, classes);
-  };
+  } // nav link
+  ;
 
-  // nav link
-
-
-  AppSidebarNav.prototype.navLink = function navLink(item, key, classes) {
+  _proto.navLink = function navLink(item, key, classes) {
     var url = item.url || '';
-    var itemIcon = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('i', { className: classes.icon });
+    var itemIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: classes.icon
+    });
     var itemBadge = this.navBadge(item.badge);
     var attributes = item.attributes || {};
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"],
-      { key: key, className: classes.item },
-      attributes.disabled ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavLink"],
-        _extends({ href: '', className: classes.link }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      ) : this.isExternal(url) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavLink"],
-        _extends({ href: url, className: classes.link, active: true }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      ) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"],
-        _extends({ to: url, className: classes.link, activeClassName: 'active', onClick: this.hideMobile }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      )
-    );
-  };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
+      key: key,
+      className: classes.item
+    }, attributes.disabled ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavLink"], _extends({
+      href: '',
+      className: classes.link
+    }, attributes), itemIcon, item.name, itemBadge) : this.isExternal(url) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavLink"], _extends({
+      href: url,
+      className: classes.link,
+      active: true
+    }, attributes), itemIcon, item.name, itemBadge) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], _extends({
+      to: url,
+      className: classes.link,
+      activeClassName: "active",
+      onClick: this.hideMobile
+    }, attributes), itemIcon, item.name, itemBadge));
+  } // badge addon to NavItem
+  ;
 
-  // badge addon to NavItem
-
-
-  AppSidebarNav.prototype.navBadge = function navBadge(badge) {
+  _proto.navBadge = function navBadge(badge) {
     if (badge) {
-      var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()(badge.class);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["Badge"],
-        { className: classes, color: badge.variant },
-        badge.text
-      );
+      var classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()(badge["class"]);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Badge"], {
+        className: classes,
+        color: badge.variant
+      }, badge.text);
     }
+
     return null;
   };
 
-  AppSidebarNav.prototype.isExternal = function isExternal(url) {
+  _proto.isExternal = function isExternal(url) {
     var link = url ? url.substring(0, 4) : '';
     return link === 'http';
   };
 
-  AppSidebarNav.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        navConfig = _props.navConfig,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'navConfig']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        navConfig = _this$props.navConfig,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "navConfig"]);
 
     delete attributes.isOpen;
     delete attributes.staticContext;
     delete attributes.Tag;
+    var navClasses = classnames__WEBPACK_IMPORTED_MODULE_3___default()(className, 'sidebar-nav'); // ToDo: find better rtl fix
 
-    var navClasses = classnames__WEBPACK_IMPORTED_MODULE_3___default()(className, 'sidebar-nav');
+    var isRtl = getComputedStyle(document.documentElement).direction === 'rtl'; // sidebar-nav root
 
-    // ToDo: find better rtl fix
-    var isRtl = getComputedStyle(document.documentElement).direction === 'rtl';
-
-    // sidebar-nav root
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_5___default.a,
-      _extends({ className: navClasses }, attributes, { options: { suppressScrollX: !isRtl } }),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"],
-        null,
-        children || this.navList(navConfig.items)
-      )
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_5___default.a, _extends({
+      className: navClasses
+    }, attributes, {
+      options: {
+        suppressScrollX: !isRtl
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], null, children || this.navList(navConfig.items)));
   };
 
   return AppSidebarNav;
@@ -1988,7 +1856,6 @@ var AppSidebarNav = function (_Component) {
 
 AppSidebarNav.propTypes =  true ? propTypes : undefined;
 AppSidebarNav.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarNav);
 
 /***/ }),
@@ -2016,17 +1883,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_scrollbar_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/scrollbar.css */ "./node_modules/@coreui/react/css/scrollbar.css");
 /* harmony import */ var _css_scrollbar_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_css_scrollbar_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Shared/layout/layout */ "./node_modules/@coreui/react/es/Shared/layout/layout.js");
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -2036,9 +1901,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
   navConfig: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.any,
@@ -2048,8 +1911,7 @@ var propTypes = {
   tag: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string]),
   router: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.any,
   props: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.any
-};
-
+} : undefined;
 var defaultProps = {
   tag: 'nav',
   navConfig: {
@@ -2057,174 +1919,165 @@ var defaultProps = {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: { variant: 'info', text: 'NEW' }
+      badge: {
+        variant: 'info',
+        text: 'NEW'
+      }
     }]
   },
   isOpen: false,
-  router: { RsNavLink: reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"] }
+  router: {
+    RsNavLink: reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"]
+  }
 };
 
-var AppSidebarNav2 = function (_Component) {
-  _inherits(AppSidebarNav2, _Component);
+var AppSidebarNav2 = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarNav2, _Component);
 
   function AppSidebarNav2(props) {
-    _classCallCheck(this, AppSidebarNav2);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+    _this = _Component.call(this, props) || this;
 
-    _this._scrollBarRef = null;
+    _defineProperty(_assertThisInitialized(_this), "_scrollBarRef", null);
 
-
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.activeRoute = _this.activeRoute.bind(_this);
-    _this.hideMobile = _this.hideMobile.bind(_this);
-
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.activeRoute = _this.activeRoute.bind(_assertThisInitialized(_this));
+    _this.hideMobile = _this.hideMobile.bind(_assertThisInitialized(_this));
     _this.changes = null;
-    _this.state = { sidebarMinimized: false };
+    _this.state = {
+      sidebarMinimized: false
+    };
     return _this;
   }
 
-  AppSidebarNav2.prototype.handleClick = function handleClick(e, item) {
+  var _proto = AppSidebarNav2.prototype;
+
+  _proto.handleClick = function handleClick(e, item) {
     if (item.attributes && typeof item.attributes.onClick === 'function' && !this.isActiveRoute(item.url, this.props)) {
       item.attributes.onClick(e, item);
     } else {
       e.preventDefault();
     }
+
     e.currentTarget.parentElement.classList.toggle('open');
   };
 
-  AppSidebarNav2.prototype.isActiveRoute = function isActiveRoute(routeName, props) {
+  _proto.isActiveRoute = function isActiveRoute(routeName, props) {
     return props.location.pathname.indexOf(routeName) > -1;
   };
 
-  AppSidebarNav2.prototype.activeRoute = function activeRoute(routeName, props) {
+  _proto.activeRoute = function activeRoute(routeName, props) {
     return this.isActiveRoute(routeName, props) ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
   };
 
-  AppSidebarNav2.prototype.hideMobile = function hideMobile() {
+  _proto.hideMobile = function hideMobile() {
     if (document.body.classList.contains('sidebar-show')) {
       document.body.classList.toggle('sidebar-show');
     }
   };
 
-  AppSidebarNav2.prototype.getAttribs = function getAttribs(attributes) {
+  _proto.getAttribs = function getAttribs(attributes) {
     return _extends({}, attributes);
-  };
+  } // nav list
+  ;
 
-  // nav list
-
-
-  AppSidebarNav2.prototype.navList = function navList(items) {
+  _proto.navList = function navList(items) {
     var _this2 = this;
 
     return items.map(function (item, index) {
       return _this2.navType(item, index);
     });
-  };
+  } // nav type
+  ;
 
-  // nav type
-
-
-  AppSidebarNav2.prototype.navType = function navType(item, idx) {
+  _proto.navType = function navType(item, idx) {
     return item.title ? this.navTitle(item, idx) : item.divider ? this.navDivider(item, idx) : item.label ? this.navLabel(item, idx) : item.children ? this.navDropdown(item, idx) : this.navItem(item, idx);
-  };
+  } // nav list section title
+  ;
 
-  // nav list section title
+  _proto.navTitle = function navTitle(title, key) {
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-title', title["class"], title.className);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: key,
+      className: classes
+    }, this.navWrapper(title), " ");
+  } // simple wrapper for nav-title item
+  ;
 
-
-  AppSidebarNav2.prototype.navTitle = function navTitle(title, key) {
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-title', title.class, title.className);
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'li',
-      { key: key, className: classes },
-      this.navWrapper(title),
-      ' '
-    );
-  };
-
-  // simple wrapper for nav-title item
-
-
-  AppSidebarNav2.prototype.navWrapper = function navWrapper(item) {
+  _proto.navWrapper = function navWrapper(item) {
     return item.wrapper && item.wrapper.element ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(item.wrapper.element, item.wrapper.attributes, item.name) : item.name;
-  };
+  } // nav list divider
+  ;
 
-  // nav list divider
+  _proto.navDivider = function navDivider(divider, key) {
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('divider', divider["class"], divider.className);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: key,
+      className: classes
+    });
+  } // nav label with nav link
+  ;
 
-
-  AppSidebarNav2.prototype.navDivider = function navDivider(divider, key) {
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('divider', divider.class, divider.className);
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('li', { key: key, className: classes });
-  };
-
-  // nav label with nav link
-
-
-  AppSidebarNav2.prototype.navLabel = function navLabel(item, key) {
+  _proto.navLabel = function navLabel(item, key) {
     var classes = {
-      item: classnames__WEBPACK_IMPORTED_MODULE_2___default()('hidden-cn', item.class),
-      link: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-label', item.class ? item.class : ''),
-      icon: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-icon', !item.icon ? 'fa fa-circle' : item.icon, item.label.variant ? 'text-' + item.label.variant : '', item.label.class ? item.label.class : '')
+      item: classnames__WEBPACK_IMPORTED_MODULE_2___default()('hidden-cn', item["class"]),
+      link: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-label', item["class"] ? item["class"] : ''),
+      icon: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-icon', !item.icon ? 'fa fa-circle' : item.icon, item.label.variant ? "text-" + item.label.variant : '', item.label["class"] ? item.label["class"] : '')
     };
     return this.navLink(item, key, classes);
-  };
+  } // nav dropdown
+  ;
 
-  // nav dropdown
-
-
-  AppSidebarNav2.prototype.navDropdown = function navDropdown(item, key) {
+  _proto.navDropdown = function navDropdown(item, key) {
     var _this3 = this;
 
     var itemIcon = this.navIcon(item);
     var attributes = this.getAttribs(item.attributes);
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-link', 'nav-dropdown-toggle', item.class, attributes.class, attributes.className);
-    delete attributes.class;
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-link', 'nav-dropdown-toggle', item["class"], attributes["class"], attributes.className);
+    delete attributes["class"];
     delete attributes.className;
     var itemAttr = this.getAttribs(item.itemAttr);
-    var liClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-item', 'nav-dropdown', itemAttr.class, itemAttr.className);
-    delete itemAttr.class;
+    var liClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-item', 'nav-dropdown', itemAttr["class"], itemAttr.className);
+    delete itemAttr["class"];
     delete itemAttr.className;
     var NavLink = this.props.router.NavLink || reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", _extends({
+      key: key,
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(liClasses, {
+        'open': this.isActiveRoute(item.url, this.props)
+      })
+    }, itemAttr), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NavLink, _extends({
+      activeClassName: "open",
+      className: classes,
+      to: item.url || ''
+    }, attributes, {
+      onClick: function onClick(e) {
+        return _this3.handleClick(e, item);
+      }
+    }), itemIcon, item.name, this.navBadge(item.badge)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "nav-dropdown-items"
+    }, this.navList(item.children)));
+  } // nav item with nav link
+  ;
 
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'li',
-      _extends({ key: key, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(liClasses, { 'open': this.isActiveRoute(item.url, this.props) }) }, itemAttr),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        NavLink,
-        _extends({ activeClassName: 'open',
-          className: classes,
-          to: item.url || ''
-        }, attributes, {
-          onClick: function onClick(e) {
-            return _this3.handleClick(e, item);
-          } }),
-        itemIcon,
-        item.name,
-        this.navBadge(item.badge)
-      ),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        'ul',
-        { className: 'nav-dropdown-items' },
-        this.navList(item.children)
-      )
-    );
-  };
-
-  // nav item with nav link
-
-
-  AppSidebarNav2.prototype.navItem = function navItem(item, key) {
+  _proto.navItem = function navItem(item, key) {
     var classes = {
-      item: classnames__WEBPACK_IMPORTED_MODULE_2___default()(item.class),
-      link: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-link', item.variant ? 'nav-link-' + item.variant : ''),
+      item: classnames__WEBPACK_IMPORTED_MODULE_2___default()(item["class"]),
+      link: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-link', item.variant ? "nav-link-" + item.variant : ''),
       icon: classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-icon', item.icon)
     };
     return this.navLink(item, key, classes);
   };
 
-  AppSidebarNav2.prototype.navIcon = function navIcon(item) {
+  _proto.navIcon = function navIcon(item) {
     var icon = item.icon;
-    var iconObject = (typeof icon === 'undefined' ? 'undefined' : _typeof(icon)) === 'object' && icon !== null ? _extends({ iconClass: icon.class, iconClassName: icon.className }, icon) : { iconClass: icon };
+    var iconObject = typeof icon === 'object' && icon !== null ? _extends({
+      iconClass: icon["class"],
+      iconClassName: icon.className
+    }, icon) : {
+      iconClass: icon
+    };
     var iconClass = iconObject.iconClass,
         iconClassName = iconObject.iconClassName,
         innerText = iconObject.innerText,
@@ -2232,24 +2085,24 @@ var AppSidebarNav2 = function (_Component) {
         attributes = iconObject.attributes;
 
     var iconAttr = _extends({}, attributes);
-    delete iconAttr.class;
+
+    delete iconAttr["class"];
     delete iconAttr.className;
     delete iconAttr.img;
     var iconImg = img && img.src ? img : null;
     var iconInner = innerText || null;
     var classIcon = classnames__WEBPACK_IMPORTED_MODULE_2___default()('nav-icon', iconClass, iconClassName);
-    var iconComponent = iconImg ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', _extends({}, iconAttr, { className: classIcon, src: iconImg.src })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'i',
-      _extends({}, iconAttr, { className: classIcon }),
-      iconInner
-    );
+    var iconComponent = iconImg ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", _extends({}, iconAttr, {
+      className: classIcon,
+      src: iconImg.src
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", _extends({}, iconAttr, {
+      className: classIcon
+    }), iconInner);
     return iconComponent;
-  };
+  } // nav link
+  ;
 
-  // nav link
-
-
-  AppSidebarNav2.prototype.navLink = function navLink(item, key, classes) {
+  _proto.navLink = function navLink(item, key, classes) {
     var _this4 = this;
 
     var ref = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
@@ -2257,72 +2110,65 @@ var AppSidebarNav2 = function (_Component) {
     var itemIcon = this.navIcon(item);
     var itemBadge = this.navBadge(item.badge);
     var attributes = this.getAttribs(item.attributes);
-    classes.link = classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.link, attributes.class, attributes.className);
-    delete attributes.class;
+    classes.link = classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.link, attributes["class"], attributes.className);
+    delete attributes["class"];
     delete attributes.className;
     var itemAttr = this.getAttribs(item.itemAttr);
-    classes.item = classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.item, itemAttr.class, itemAttr.className);
-    delete itemAttr.class;
+    classes.item = classnames__WEBPACK_IMPORTED_MODULE_2___default()(classes.item, itemAttr["class"], itemAttr.className);
+    delete itemAttr["class"];
     delete itemAttr.className;
     var NavLink = this.props.router.NavLink || reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"];
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"],
-      _extends({ key: key, className: classes.item }, itemAttr),
-      attributes.disabled ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"],
-        _extends({ href: '', className: classes.link }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      ) : this.isExternal(url, this.props) || NavLink === reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"],
-        _extends({ href: url, className: classes.link, active: true }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      ) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        NavLink,
-        _extends({ to: url, className: classes.link, activeClassName: 'active', onClick: function onClick() {
-            return _this4.hideMobile(ref);
-          }, ref: ref }, attributes),
-        itemIcon,
-        item.name,
-        itemBadge
-      )
-    );
-  };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], _extends({
+      key: key,
+      className: classes.item
+    }, itemAttr), attributes.disabled ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"], _extends({
+      href: '',
+      className: classes.link
+    }, attributes), itemIcon, item.name, itemBadge) : this.isExternal(url, this.props) || NavLink === reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"], _extends({
+      href: url,
+      className: classes.link,
+      active: true
+    }, attributes), itemIcon, item.name, itemBadge) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NavLink, _extends({
+      to: url,
+      className: classes.link,
+      activeClassName: "active",
+      onClick: function onClick() {
+        return _this4.hideMobile(ref);
+      },
+      ref: ref
+    }, attributes), itemIcon, item.name, itemBadge));
+  } // badge addon to NavItem
+  ;
 
-  // badge addon to NavItem
-
-
-  AppSidebarNav2.prototype.navBadge = function navBadge(badge) {
+  _proto.navBadge = function navBadge(badge) {
     if (badge) {
-      var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(badge.class, badge.className);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["Badge"],
-        { className: classes, color: badge.variant },
-        badge.text
-      );
+      var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(badge["class"], badge.className);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Badge"], {
+        className: classes,
+        color: badge.variant
+      }, badge.text);
     }
+
     return null;
   };
 
-  AppSidebarNav2.prototype.isExternal = function isExternal(url, props) {
-    var linkType = typeof url === 'undefined' ? 'undefined' : _typeof(url);
-    var link = linkType === 'string' ? url : linkType === 'object' && url.pathname ? url.pathname : linkType === 'function' && typeof url(props.location) === 'string' ? url(props.location) : linkType === 'function' && _typeof(url(props.location)) === 'object' ? url(props.location).pathname : '';
+  _proto.isExternal = function isExternal(url, props) {
+    var linkType = typeof url;
+    var link = linkType === 'string' ? url : linkType === 'object' && url.pathname ? url.pathname : linkType === 'function' && typeof url(props.location) === 'string' ? url(props.location) : linkType === 'function' && typeof url(props.location) === 'object' ? url(props.location).pathname : '';
     return link.substring(0, 4) === 'http';
   };
 
-  AppSidebarNav2.prototype.observeDomMutations = function observeDomMutations() {
+  _proto.observeDomMutations = function observeDomMutations() {
     var _this5 = this;
 
     if (window.MutationObserver) {
-
       // eslint-disable-next-line
       this.changes = new MutationObserver(function (mutations) {
-
         var isSidebarMinimized = document.body.classList.contains('sidebar-minimized') || false;
-        _this5.setState({ sidebarMinimized: isSidebarMinimized });
+
+        _this5.setState({
+          sidebarMinimized: isSidebarMinimized
+        });
 
         _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_7__["default"].sidebarPSToggle(!isSidebarMinimized);
       });
@@ -2332,18 +2178,19 @@ var AppSidebarNav2 = function (_Component) {
         attributeFilter: ['class']
       });
     }
+
     window.addEventListener('resize', this.onResize);
   };
 
-  AppSidebarNav2.prototype.onResize = function onResize() {
+  _proto.onResize = function onResize() {
     _Shared_layout_layout__WEBPACK_IMPORTED_MODULE_7__["default"].sidebarPSToggle(true);
   };
 
-  AppSidebarNav2.prototype.componentDidMount = function componentDidMount() {
+  _proto.componentDidMount = function componentDidMount() {
     this.observeDomMutations();
   };
 
-  AppSidebarNav2.prototype.componentWillUnmount = function componentWillUnmount() {
+  _proto.componentWillUnmount = function componentWillUnmount() {
     try {
       this.changes.disconnect();
       window.removeEventListener('resize', this.onResize);
@@ -2353,36 +2200,33 @@ var AppSidebarNav2 = function (_Component) {
     }
   };
 
-  AppSidebarNav2.prototype.render = function render() {
+  _proto.render = function render() {
     var _this6 = this;
 
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        navConfig = _props.navConfig,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'navConfig']);
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        navConfig = _this$props.navConfig,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "navConfig"]);
 
     delete attributes.isOpen;
     delete attributes.staticContext;
     delete attributes.Tag;
     delete attributes.router;
-
     var navClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'sidebar-nav');
+    var options = Object.assign({}, {
+      suppressScrollX: true,
+      suppressScrollY: this.state.sidebarMinimized
+    }); // sidebar-nav root
 
-    var options = Object.assign({}, { suppressScrollX: true, suppressScrollY: this.state.sidebarMinimized });
-
-    // sidebar-nav root
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4___default.a,
-      _extends({ className: navClasses }, attributes, { options: options, ref: function ref(_ref) {
-          _this6._scrollBarRef = _ref;
-        } }),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        reactstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"],
-        null,
-        children || this.navList(navConfig.items)
-      )
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4___default.a, _extends({
+      className: navClasses
+    }, attributes, {
+      options: options,
+      ref: function ref(_ref) {
+        _this6._scrollBarRef = _ref;
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], null, children || this.navList(navConfig.items)));
   };
 
   return AppSidebarNav2;
@@ -2390,7 +2234,6 @@ var AppSidebarNav2 = function (_Component) {
 
 AppSidebarNav2.propTypes =  true ? propTypes : undefined;
 AppSidebarNav2.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarNav2);
 
 /***/ }),
@@ -2412,31 +2255,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Shared_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Shared/index */ "./node_modules/@coreui/react/es/Shared/index.js");
 /* harmony import */ var _Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Shared/toggle-classes */ "./node_modules/@coreui/react/es/Shared/toggle-classes.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   display: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
   mobile: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   tag: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
   type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
-};
-
+} : undefined;
 var defaultProps = {
   display: 'lg',
   mobile: false,
@@ -2444,56 +2283,60 @@ var defaultProps = {
   type: 'button'
 };
 
-var AppSidebarToggler = function (_Component) {
-  _inherits(AppSidebarToggler, _Component);
+var AppSidebarToggler = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSidebarToggler, _Component);
 
   function AppSidebarToggler(props) {
-    _classCallCheck(this, AppSidebarToggler);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.sidebarToggle = _this.sidebarToggle.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.sidebarToggle = _this.sidebarToggle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  AppSidebarToggler.prototype.sidebarToggle = function sidebarToggle(e) {
+  var _proto = AppSidebarToggler.prototype;
+
+  _proto.sidebarToggle = function sidebarToggle(e) {
     e.preventDefault();
     this.toggle();
   };
 
-  AppSidebarToggler.prototype.toggle = function toggle(force) {
+  _proto.toggle = function toggle(force) {
     var _ref = [this.props.display, this.props.mobile],
         display = _ref[0],
         mobile = _ref[1];
-
     var cssClass = _Shared_index__WEBPACK_IMPORTED_MODULE_3__["sidebarCssClasses"][0];
+
     if (!mobile && display && Object(_Shared_index__WEBPACK_IMPORTED_MODULE_3__["checkBreakpoint"])(display, _Shared_index__WEBPACK_IMPORTED_MODULE_3__["validBreakpoints"])) {
-      cssClass = 'sidebar-' + display + '-show';
+      cssClass = "sidebar-" + display + "-show";
     }
+
     Object(_Shared_toggle_classes__WEBPACK_IMPORTED_MODULE_4__["default"])(cssClass, _Shared_index__WEBPACK_IMPORTED_MODULE_3__["sidebarCssClasses"], force);
   };
 
-  AppSidebarToggler.prototype.render = function render() {
+  _proto.render = function render() {
     var _this2 = this;
 
-    var _props = this.props,
-        className = _props.className,
-        children = _props.children,
-        Tag = _props.tag,
-        attributes = _objectWithoutProperties(_props, ['className', 'children', 'tag']);
+    var _this$props = this.props,
+        className = _this$props.className,
+        children = _this$props.children,
+        Tag = _this$props.tag,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "children", "tag"]);
 
     delete attributes.mobile;
     delete attributes.display;
-
     var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'navbar-toggler');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      Tag,
-      _extends({ type: 'button', className: classes }, attributes, { onClick: function onClick(event) {
-          return _this2.sidebarToggle(event);
-        }, 'data-sidebar-toggler': true }),
-      children || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('span', { className: 'navbar-toggler-icon' })
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Tag, _extends({
+      type: "button",
+      className: classes
+    }, attributes, {
+      onClick: function onClick(event) {
+        return _this2.sidebarToggle(event);
+      },
+      "data-sidebar-toggler": true
+    }), children || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "navbar-toggler-icon"
+    }));
   };
 
   return AppSidebarToggler;
@@ -2501,7 +2344,6 @@ var AppSidebarToggler = function (_Component) {
 
 AppSidebarToggler.propTypes =  true ? propTypes : undefined;
 AppSidebarToggler.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSidebarToggler);
 
 /***/ }),
@@ -2521,21 +2363,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 
 
 
-
-var propTypes = {
+var propTypes =  true ? {
   color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
   outline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['', 'alt'])]),
@@ -2554,8 +2393,7 @@ var propTypes = {
   className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   dataOn: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
   dataOff: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
-};
-
+} : undefined;
 var defaultProps = {
   color: 'secondary',
   label: false,
@@ -2571,17 +2409,16 @@ var defaultProps = {
   dataOff: 'Off'
 };
 
-var AppSwitch = function (_Component) {
-  _inherits(AppSwitch, _Component);
+var AppSwitch = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AppSwitch, _Component);
 
   function AppSwitch(props) {
-    _classCallCheck(this, AppSwitch);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleKeyDown = _this.handleKeyDown.bind(_this);
-    _this.handleKeyUp = _this.handleKeyUp.bind(_this);
+    _this = _Component.call(this, props) || this;
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleKeyDown = _this.handleKeyDown.bind(_assertThisInitialized(_this));
+    _this.handleKeyUp = _this.handleKeyUp.bind(_assertThisInitialized(_this));
     _this.state = {
       uncontrolled: !!_this.props.defaultChecked,
       checked: _this.props.defaultChecked || _this.props.checked,
@@ -2590,13 +2427,15 @@ var AppSwitch = function (_Component) {
     return _this;
   }
 
-  AppSwitch.prototype.toggleState = function toggleState(check) {
+  var _proto = AppSwitch.prototype;
+
+  _proto.toggleState = function toggleState(check) {
     this.setState({
       checked: check
     });
   };
 
-  AppSwitch.prototype.handleChange = function handleChange(event) {
+  _proto.handleChange = function handleChange(event) {
     var target = event.target;
     this.toggleState(target.checked);
 
@@ -2605,70 +2444,71 @@ var AppSwitch = function (_Component) {
     }
   };
 
-  AppSwitch.prototype.handleKeyDown = function handleKeyDown(event) {
+  _proto.handleKeyDown = function handleKeyDown(event) {
     if (event.key === ' ') {
       event.preventDefault();
     }
   };
 
-  AppSwitch.prototype.handleKeyUp = function handleKeyUp(event) {
+  _proto.handleKeyUp = function handleKeyUp(event) {
     if (event.key === 'Enter' || event.key === ' ') {
       this.toggleState(!this.state.checked);
     }
   };
 
-  AppSwitch.prototype.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
     if (!this.state.uncontrolled && this.props.checked !== prevState.checked) {
       this.toggleState(this.props.checked);
     }
   };
 
-  AppSwitch.prototype.render = function render() {
-    var _props = this.props,
-        className = _props.className,
-        disabled = _props.disabled,
-        color = _props.color,
-        name = _props.name,
-        label = _props.label,
-        outline = _props.outline,
-        size = _props.size,
-        required = _props.required,
-        type = _props.type,
-        value = _props.value,
-        dataOn = _props.dataOn,
-        dataOff = _props.dataOff,
-        variant = _props.variant,
-        attributes = _objectWithoutProperties(_props, ['className', 'disabled', 'color', 'name', 'label', 'outline', 'size', 'required', 'type', 'value', 'dataOn', 'dataOff', 'variant']);
+  _proto.render = function render() {
+    var _this$props = this.props,
+        className = _this$props.className,
+        disabled = _this$props.disabled,
+        color = _this$props.color,
+        name = _this$props.name,
+        label = _this$props.label,
+        outline = _this$props.outline,
+        size = _this$props.size,
+        required = _this$props.required,
+        type = _this$props.type,
+        value = _this$props.value,
+        dataOn = _this$props.dataOn,
+        dataOff = _this$props.dataOff,
+        variant = _this$props.variant,
+        attributes = _objectWithoutPropertiesLoose(_this$props, ["className", "disabled", "color", "name", "label", "outline", "size", "required", "type", "value", "dataOn", "dataOff", "variant"]);
 
     var tabindex = attributes.tabIndex;
     delete attributes.tabIndex;
     delete attributes.checked;
     delete attributes.defaultChecked;
     delete attributes.onChange;
-
-    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'switch', label ? 'switch-label' : false, size ? 'switch-' + size : false, variant ? 'switch-' + variant : false, 'switch' + (outline ? '-outline' : '') + '-' + color + (outline === 'alt' ? '-alt' : ''), 'form-check-label');
-
+    var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'switch', label ? 'switch-label' : false, size ? "switch-" + size : false, variant ? "switch-" + variant : false, "switch" + (outline ? '-outline' : '') + "-" + color + (outline === 'alt' ? '-alt' : ''), 'form-check-label');
     var inputClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('switch-input', 'form-check-input');
-
     var sliderClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('switch-slider');
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      'label',
-      { className: classes, tabIndex: tabindex, onKeyUp: this.handleKeyUp, onKeyDown: this.handleKeyDown },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('input', _extends({ type: type,
-        className: inputClasses,
-        onChange: this.handleChange,
-        checked: this.state.checked,
-        name: name,
-        required: required,
-        disabled: disabled,
-        value: value,
-        'aria-checked': this.state.checked,
-        'aria-disabled': disabled,
-        'aria-readonly': disabled
-      }, attributes)),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('span', { className: sliderClasses, 'data-checked': dataOn, 'data-unchecked': dataOff })
-    );
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: classes,
+      tabIndex: tabindex,
+      onKeyUp: this.handleKeyUp,
+      onKeyDown: this.handleKeyDown
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+      type: type,
+      className: inputClasses,
+      onChange: this.handleChange,
+      checked: this.state.checked,
+      name: name,
+      required: required,
+      disabled: disabled,
+      value: value,
+      "aria-checked": this.state.checked,
+      "aria-disabled": disabled,
+      "aria-readonly": disabled
+    }, attributes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: sliderClasses,
+      "data-checked": dataOn,
+      "data-unchecked": dataOff
+    }));
   };
 
   return AppSwitch;
@@ -2676,7 +2516,6 @@ var AppSwitch = function (_Component) {
 
 AppSwitch.propTypes =  true ? propTypes : undefined;
 AppSwitch.defaultProps = defaultProps;
-
 /* harmony default export */ __webpack_exports__["default"] = (AppSwitch);
 
 /***/ }),
