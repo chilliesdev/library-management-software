@@ -31,7 +31,7 @@ class AuthController extends Controller
 				return response()->json('401');
 			}
 
-			return response()->json('Something went wrong on the server.',$e->getCode());
+			return response()->json($e);
 		}
 	}
 
